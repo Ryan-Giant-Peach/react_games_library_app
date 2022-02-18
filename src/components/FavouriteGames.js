@@ -1,10 +1,13 @@
-const favouriteGames = () => {
+const FavouriteGames = ({games}) => {
 
-return (
-    <>
-    <p>These are the favourite games!</p>
-    </>
-)
-}
+  const favouriteGames = games.map((game) => <li>{game.name}</li>);
 
-export default favouriteGames;
+  return (
+    <div className="favourite-games">
+      <h3>Your favourite games!</h3>
+      <ul>{favouriteGames}</ul>
+    </div>
+  );
+};
+
+export default FavouriteGames;

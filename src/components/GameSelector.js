@@ -5,7 +5,6 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Chip from "@mui/material/Chip";
 
-
 const GameSelector = ({ games, onGameSelected }) => {
   console.log(games);
 
@@ -42,4 +41,20 @@ const Platforms = ({ platforms }) => {
     </>
   );
 };
+
+const Genres = ({ genres }) => {
+  if (!genres) return;
+  return (
+    <>
+      {genres.map((item) => {
+        return (
+          <>
+            <Chip key={item.genres.name} label={item.genres.name} />
+          </>
+        );
+      })}
+    </>
+  );
+};
+
 export default GameSelector;

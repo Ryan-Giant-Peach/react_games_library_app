@@ -5,13 +5,18 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import ImageList from '@mui/material/ImageList';
-import ImageListItem from '@mui/material/ImageListItem';
-import Rating from '@mui/material/Rating';
-import IconButton from '@mui/material/IconButton';
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import ImageList from "@mui/material/ImageList";
+import ImageListItem from "@mui/material/ImageListItem";
+import Rating from "@mui/material/Rating";
+import IconButton from "@mui/material/IconButton";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
-export default function Game({ game, onFavouriteToggle }) {
+export default function Game({ game, onFavouriteToggle, onAddFavourite }) {
+
+    const handleButtonClick = function(event){
+        onAddFavourite(game);
+    }
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -24,15 +29,9 @@ export default function Game({ game, onFavouriteToggle }) {
         <Typography gutterBottom variant="h5" component="div">
           {game.name}
         </Typography>
-        <ImageList
-          sx={{ width: 500, height: 160 }}
-          cols={4}
-          rowHeight={80}
-        >
+        <ImageList sx={{ width: 500, height: 160 }} cols={4} rowHeight={80}>
           {game.short_screenshots.map((item) => (
-            <ImageListItem
-              key={item.id}
-            >
+            <ImageListItem key={item.id}>
               <img
                 src={`${item.image}`}
                 width="80"
@@ -50,6 +49,7 @@ export default function Game({ game, onFavouriteToggle }) {
         </IconButton>
         <Rating name="read-only" value={game.rating} />
       </CardActions>
+      <button value={game} onClick={handleButtonClick}>Add to Favourites</button>
     </Card>
   );
 }
